@@ -23,4 +23,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+Dictionary<double, string> valoresMemoria = new Dictionary<double, string>();
+
 app.Run();

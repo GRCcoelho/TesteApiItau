@@ -1,8 +1,34 @@
 [
   {
     "ContainingType": "TesteApiItau.Controllers.TransacaoController",
+    "Method": "DeleteTransacao",
+    "RelativePath": "delete/transacao",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TesteApiItau.Controllers.TransacaoController",
+    "Method": "GetTransacao",
+    "RelativePath": "get/transacao",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TesteApiItau.Controllers.TransacaoController",
     "Method": "PostTransacao",
-    "RelativePath": "transacao",
+    "RelativePath": "post/transacao",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

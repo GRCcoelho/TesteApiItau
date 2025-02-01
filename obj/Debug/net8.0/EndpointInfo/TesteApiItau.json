@@ -5,7 +5,19 @@
     "version": "1.0"
   },
   "paths": {
-    "/transacao": {
+    "/get/transacao": {
+      "get": {
+        "tags": [
+          "Transacao"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/post/transacao": {
       "post": {
         "tags": [
           "Transacao"
@@ -72,6 +84,18 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/delete/transacao": {
+      "delete": {
+        "tags": [
+          "Transacao"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Concurrent;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
@@ -7,12 +8,9 @@ namespace TesteApiItau.Models
 {
     public class Transacao/* : IValidatableObject*/
     {
+        private long Id { get; set; }
         public double valor { get; set; }
         public string dataHora { get; set; }
-
-
-
-
 
         public string ValidaCampos(double valor, string data)
         {
@@ -20,16 +18,21 @@ namespace TesteApiItau.Models
 
             string erroValor = ValidaValor(valor);
             if (!string.IsNullOrEmpty(erroValor))
-                erros.AppendLine(ValidaValor(valor));
+                erros.AppendLine(erroValor);
 
             string erroData = ValidaDataHora(data);
             if(!string.IsNullOrEmpty(erroData))
-                erros.AppendLine(ValidaDataHora(data));
+                erros.AppendLine(erroData);
 
             return erros.ToString();
         }
 
-        public string ValidaValor(double valor)
+        public long BuscaValorUltimoId(ConcurrentDictionary<long, Transacao> valoresMemoria)
+        {
+            return valoresMemoria.Keys.Count;
+        }
+
+        private string ValidaValor(double valor)
         {
             if (valor < 0)
                 return "O campo 'valor' não pode ser negativo!";
@@ -37,7 +40,7 @@ namespace TesteApiItau.Models
             return string.Empty;
         }
 
-        public string ValidaDataHora(string data)
+        private string ValidaDataHora(string data)
         {
             StringBuilder erros = new StringBuilder();
 
@@ -52,23 +55,6 @@ namespace TesteApiItau.Models
 
             return erros.ToString();
         }
-
-
-
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    if (this.valor < 0)
-        //        yield return new ValidationResult("O campo 'valor' não pode ser negativo!", new[] { nameof(valor) });
-
-        //    if (string.IsNullOrEmpty(this.dataHora))
-        //        yield return new ValidationResult("O campo 'dataHora' é obrigatório", new[] { nameof(dataHora) });
-
-        //    if (!BeFormattedISO(this.dataHora))
-        //        yield return new ValidationResult("O campo 'dataHora' deve estar no formato ISO 8601", new[] { nameof(dataHora) });
-
-        //    if (!BeGreaterThanNow(this.dataHora))
-        //        yield return new ValidationResult("O campo 'dataHora' não pode ter valor futuro", new[] { nameof(dataHora) });
-        //}
 
         private bool BeGreaterThanNow(string data)
         {
@@ -92,6 +78,6 @@ namespace TesteApiItau.Models
             if (Regex.IsMatch(data, regexISO))
                 return true;
             return false;
-        }
+        }        
     }
 }

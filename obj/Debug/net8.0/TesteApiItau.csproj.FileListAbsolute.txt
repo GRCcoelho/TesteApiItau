@@ -38,3 +38,4 @@ C:\Users\supor\source\repos\TesteApiItau\TesteApiItau\bin\Debug\net8.0\FluentVal
 C:\Users\supor\source\repos\TesteApiItau\TesteApiItau\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\supor\source\repos\TesteApiItau\TesteApiItau\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\supor\source\repos\TesteApiItau\TesteApiItau\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\supor\source\repos\TesteApiItau\TesteApiItau\obj\Debug\net8.0\TesteApiItau.sourcelink.json
