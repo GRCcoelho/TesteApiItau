@@ -99,6 +99,18 @@
           }
         }
       }
+    },
+    "/get/estatistica": {
+      "get": {
+        "tags": [
+          "Transacao"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

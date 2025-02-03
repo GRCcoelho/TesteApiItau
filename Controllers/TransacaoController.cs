@@ -9,7 +9,7 @@ namespace TesteApiItau.Controllers
     [ApiController]
     public class TransacaoController : ControllerBase
     {
-        private static ConcurrentDictionary<long, Transacao> valoresMemoria = new ConcurrentDictionary<long, Transacao>();
+        public static ConcurrentDictionary<long, Transacao> valoresMemoria = new ConcurrentDictionary<long, Transacao>();
         private TransacaoService _transacaoService = new TransacaoService();
 
         #region Método GET
@@ -46,6 +46,7 @@ namespace TesteApiItau.Controllers
         }
         #endregion
 
+        #region Método DELETE
         [HttpDelete("delete/transacao")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> DeleteTransacao()
@@ -56,5 +57,17 @@ namespace TesteApiItau.Controllers
                 return BadRequest("Não existem transações para excluir.");
             return Ok("Todas as informações foram apagadas com sucesso");
         }
+        #endregion
+
+        #region Método GET ESTATÍSTICA
+        [HttpGet("get/estatistica")]
+        public IActionResult GetEstatistica()
+        {
+            EstatisticaService _estatisticaService = new EstatisticaService();
+            if (valoresMemoria.Count() == 0)
+                return BadRequest("Não existem transações para gerar estatística.");
+            return Ok(_estatisticaService.GerarEstatisticas(valoresMemoria));
+        }
+        #endregion
     }
 }

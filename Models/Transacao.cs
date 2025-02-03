@@ -60,11 +60,10 @@ namespace TesteApiItau.Models
         {
             if (BeFormattedISO(data))
             {
-                if (DateTime.TryParse(data, null, System.Globalization.DateTimeStyles.RoundtripKind, out DateTime dataConvertida))
-                {
-                    return dataConvertida <= DateTime.UtcNow;
-                }
-                return false;
+                if(DateTimeOffset.Now.CompareTo(DateTimeOffset.Parse(data)) == -1) // Se retornar -1 é porque a data recebida pela API é maior que a hora atual
+                    return false;
+
+                return true;
             }
             else
             {

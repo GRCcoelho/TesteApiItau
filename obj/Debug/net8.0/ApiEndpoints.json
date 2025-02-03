@@ -17,6 +17,16 @@
   },
   {
     "ContainingType": "TesteApiItau.Controllers.TransacaoController",
+    "Method": "GetEstatistica",
+    "RelativePath": "get/estatistica",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TesteApiItau.Controllers.TransacaoController",
     "Method": "GetTransacao",
     "RelativePath": "get/transacao",
     "HttpMethod": "GET",
