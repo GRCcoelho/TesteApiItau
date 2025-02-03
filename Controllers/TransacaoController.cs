@@ -17,6 +17,8 @@ namespace TesteApiItau.Controllers
         public IActionResult GetTransacao()
         {
             // Retorna todos os itens armazenados em memória
+            if (valoresMemoria.Count() == 0)
+                return BadRequest("Não existem transições realizadas.");
             return Ok(valoresMemoria);
         }
         #endregion

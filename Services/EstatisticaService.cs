@@ -9,6 +9,7 @@ namespace TesteApiItau.Services
         public string GerarEstatisticas(ConcurrentDictionary<long, Transacao> valoresMemoria)
         {
             valoresMemoria = RetornaRegistrosUltimoMinuto(valoresMemoria);
+
             var response = new
             {
                 count = Count(valoresMemoria),
@@ -35,7 +36,7 @@ namespace TesteApiItau.Services
             foreach (var item in valoresMemoria)
             {
                 dataRecebida = DateTimeOffset.Parse(item.Value.dataHora);
-                if (dataRecebida < DateTimeOffset.Now.AddMinutes(-10)) // Se a data for menor que o último minuto
+                if (dataRecebida < DateTimeOffset.Now.AddSeconds(-60)) // Se a data for menor que o último minuto
                     valoresMemoria.TryRemove(item);
             }
 
